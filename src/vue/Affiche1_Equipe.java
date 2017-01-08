@@ -8,8 +8,7 @@ package vue;
 
 import coucheDAO.EditionDAO;
 import coucheDAO.EquipeDAO;
-import edition.Edition;
-import equipe.Equipe;
+import modele.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -230,22 +229,22 @@ public class Affiche1_Equipe extends javax.swing.JFrame {
                 if (equipe.size() == 16){
                     jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
-                            {equipe.get(0).getNom(), equipe.get(0).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(0).getNom()))},
-                            {equipe.get(1).getNom(), equipe.get(1).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(1).getNom()))},
-                            {equipe.get(2).getNom(), equipe.get(2).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(2).getNom()))},
-                            {equipe.get(3).getNom(), equipe.get(3).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(3).getNom()))},
-                            {equipe.get(4).getNom(), equipe.get(4).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(4).getNom()))},
-                            {equipe.get(5).getNom(), equipe.get(5).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(5).getNom()))},
-                            {equipe.get(6).getNom(), equipe.get(6).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(6).getNom()))},
-                            {equipe.get(7).getNom(), equipe.get(7).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(7).getNom()))},
-                            {equipe.get(8).getNom(), equipe.get(8).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(8).getNom()))},
-                            {equipe.get(9).getNom(), equipe.get(9).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(9).getNom()))},
-                            {equipe.get(10).getNom(), equipe.get(10).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(10).getNom()))},
-                            {equipe.get(11).getNom(), equipe.get(11).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(11).getNom()))},
-                            {equipe.get(12).getNom(), equipe.get(12).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(12).getNom()))},
-                            {equipe.get(13).getNom(), equipe.get(13).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(13).getNom()))},
-                            {equipe.get(14).getNom(), equipe.get(14).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(14).getNom()))},
-                            {equipe.get(15).getNom(), equipe.get(15).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(15).getNom()))},
+                            {equipe.get(0).getNomEq(), equipe.get(0).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(0).getNom()))},
+                            {equipe.get(1).getNomEq(), equipe.get(1).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(1).getNom()))},
+                            {equipe.get(2).getNomEq(), equipe.get(2).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(2).getNom()))},
+                            {equipe.get(3).getNomEq(), equipe.get(3).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(3).getNom()))},
+                            {equipe.get(4).getNomEq(), equipe.get(4).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(4).getNom()))},
+                            {equipe.get(5).getNomEq(), equipe.get(5).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(5).getNom()))},
+                            {equipe.get(6).getNomEq(), equipe.get(6).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(6).getNom()))},
+                            {equipe.get(7).getNomEq(), equipe.get(7).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(7).getNom()))},
+                            {equipe.get(8).getNomEq(), equipe.get(8).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(8).getNom()))},
+                            {equipe.get(9).getNomEq(), equipe.get(9).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(9).getNom()))},
+                            {equipe.get(10).getNomEq(), equipe.get(10).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(10).getNom()))},
+                            {equipe.get(11).getNomEq(), equipe.get(11).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(11).getNom()))},
+                            {equipe.get(12).getNomEq(), equipe.get(12).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(12).getNom()))},
+                            {equipe.get(13).getNomEq(), equipe.get(13).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(13).getNom()))},
+                            {equipe.get(14).getNomEq(), equipe.get(14).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(14).getNom()))},
+                            {equipe.get(15).getNomEq(), equipe.get(15).getNbPar(),  eqDAO.victoire(eqDAO.editionGagnee(equipe.get(15).getNom()))},
                             },
                         new String [] {
                             "Listes des Equipes", "Nombre de participations", "Editions Gagnées"}

@@ -1,7 +1,7 @@
 package coucheDAO;
 
 import ConnectionDB.ConnectionDB;
-import demi.Demi;
+import modele.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,129 +1,89 @@
-package poule;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package modele;
 
-import equipe.Equipe;
-import java.util.ArrayList;
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.*;
 
 /**
  *
- * @author GROUPE 2
+ * @author XAVIER
  */
-public class Poule {
-
-    private int id;
-
-    private String nom;
-
-    private ArrayList<Equipe> listEquipe;
-    
-    private int idedition;
+@Entity
+@Table(name = "poule")
+@NamedQueries({
+    @NamedQuery(name = "Poule.findAll", query = "SELECT p FROM Poule p"),
+    @NamedQuery(name = "Poule.findByIdpoule", query = "SELECT p FROM Poule p WHERE p.idpoule = :idpoule"),
+    @NamedQuery(name = "Poule.findByIdedition", query = "SELECT p FROM Poule p WHERE p.idedition.idedition = :idedition"),
+    @NamedQuery(name = "Poule.findByNom", query = "SELECT p FROM Poule p WHERE p.nom = :nom")})
+public class Poule implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idpoule")
+    private long idpoule;
+    @Column(name = "nom")
+    private Character nom;
+    @JoinColumn(name = "idedition", referencedColumnName = "idedition")
+    @ManyToOne
+    private Edition idedition;
+    @OneToMany(mappedBy = "idpoule")
+    private List<Equipe> listEquipe;
+    @OneToMany(mappedBy = "idpoule")
+    private List<Matchs> matchsList;
 
     public Poule() {
     }
 
-    /**
-     * Constructeur par initialisation de la classe poule
-     * @param id int désignant l'id d'une poule 
-     * @param nom  String désignant le nom de la poule 
-     */
-    public Poule(int id, String nom) {
-        this.id = id;
-        this.nom = nom;
-    }
-
-    /**
-     * Constructeur par initialisation de la classe poule
-     * @param id int désignant l'id d'une poule
-     * @param nom String désignant le nom de la poule
-     * @param listEquipe ArrayList désignant la liste des équipes d'une poule
-     */
-    public Poule(int id, String nom, ArrayList<Equipe> listEquipe) {
-        this.id = id;
-        this.nom = nom;
-        this.listEquipe = listEquipe;
-    }
-
-    /**
-     * 
-     * @param id
-     * @param nom
-     * @param idedition 
-     */
-    public Poule(int id, String nom, int idedition) {
-        this.id = id;
+    public Poule(Character nom, Edition idedition) {
         this.nom = nom;
         this.idedition = idedition;
     }
 
-    
-    /**
-     * méthode permettant de retourner l'id d'une poule 
-     * @return int l'id d'une poule
-     */
-    public int getId() {
-        return id;
-    }
-    /**
-     * 
-     * @return 
-     */
-    public int getIdedition() {
-        return idedition;
+    public long getIdpoule() {
+        return idpoule;
     }
 
-    /**
-     * méthode permettant de modifier l'id d'une poule
-     * @param id int désignant l'id d'une poule
-     */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdpoule(long idpoule) {
+        this.idpoule = idpoule;
     }
 
-    /**
-     * 
-     * @param idedition 
-     */
-    public void setIdedition(int idedition) {
-        this.idedition = idedition;
-    }
-    
-    /**
-     * méthode permettant de modifier le nom d'une poule
-     * @param nom String désignant le nom d'une poule
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-    /**
-     * méthode permettant de retourner le nom d'une poule
-     * @return String le nom d'une poule 
-     */
-    public String getNom() {
+    public Character getNom() {
         return nom;
     }
 
-    /**
-     * méthode retournant la liste des équipes d'une poule
-     * @return ArrayList<Equipe> la liste des équipes d'une poule
-     */
-    public ArrayList<Equipe> getListEquipe() {
+    public void setNom(Character nom) {
+        this.nom = nom;
+    }
+
+    public Edition getIdedition() {
+        return idedition;
+    }
+
+    public void setIdedition(Edition idedition) {
+        this.idedition = idedition;
+    }
+
+    public List<Equipe> getEquipeList() {
         return listEquipe;
     }
 
-    /**
-     * méthode permettant de modifier la liste des équipes d'une poule
-     * @param listEquipe ArrayList désignant la liste des équipes d'une poule
-     */
-    public void setListEquipe(ArrayList<Equipe> listEquipe) {
-        this.listEquipe = listEquipe;
+    public void setEquipeList(List<Equipe> equipeList) {
+        this.listEquipe = equipeList;
     }
 
-    //Methode propre à la classe Poule
-    
-    /**
-     * méthode permettant de retourner le classement d'une poule 
-     * @return ArrayList<Equipe> la liste des équipes d'une poule 
-     */
-    public ArrayList<Equipe>  rang() {
+    public List<Matchs> getMatchsList() {
+        return matchsList;
+    }
+
+    public void setMatchsList(List<Matchs> matchsList) {
+        this.matchsList = matchsList;
+    }
+    public List<Equipe> rang() {
         
         if (((listEquipe.get(0).getPts() > listEquipe.get(1).getPts()) || (listEquipe.get(0).getPts() == listEquipe.get(1).getPts() && listEquipe.get(0).getDiff() > listEquipe.get(1).getDiff()) || (listEquipe.get(0).getPts() == listEquipe.get(1).getPts() && listEquipe.get(0).getDiff() == listEquipe.get(1).getDiff() && listEquipe.get(0).getBm() > listEquipe.get(1).getBm()))
                 && ((listEquipe.get(0).getPts() > listEquipe.get(2).getPts()) || (listEquipe.get(0).getPts() == listEquipe.get(2).getPts() && listEquipe.get(0).getDiff() > listEquipe.get(2).getDiff()) || (listEquipe.get(0).getPts() == listEquipe.get(2).getPts() && listEquipe.get(0).getDiff() == listEquipe.get(2).getDiff() && listEquipe.get(0).getBm() > listEquipe.get(2).getBm()))
@@ -332,5 +292,4 @@ public class Poule {
         }
         return listEquipe;
     }
-
 }
